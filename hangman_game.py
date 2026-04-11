@@ -1,20 +1,25 @@
-#Hangman Game---------------------------------------------------
+#-----------------Hangman Game--------------------
+#imports
 import random
 
-#Hangman Word Attributes ---------------------------------------
-rnd_number = random.randint(0, 3)
-words = ['python', 'java', 'kotlin', 'javascript']
-hangman_word = words[rnd_number]
+#------------------Functions----------------------
+def hangman_game():
+    pass
+def end_game():
+    pass
 
-#Game State Code -----------------------------------------------
+#---------------Game Setup Code --------------------
+rnd_number = random.randint(0, 3)                       #Indicates the range of the random number generator
+words = ['python', 'java', 'kotlin', 'javascript']      #list of words for the game while range above should reflect the number of words in the list
+hangman_word = words[rnd_number]                        #Declares the word to be guessed based on the random number generator
 hangman_word_check = list(hangman_word)
 blank_counter = len(hangman_word)
 word_blanks = []
-while blank_counter > 0:
+while blank_counter > 0:                                #While loop and empty list initialized to show the blanks for the word to be guessed
     word_blanks.append("_")
     blank_counter -= 1
 word_length = len(hangman_word)
-guessed_letters = []
+guessed_letters = []                                     #Keeps track of the letters that have been guessed by the player to prevent duplicate guesses
 game_end = 0
 
 #Game Processing Code ------------------------------------------
