@@ -1,9 +1,12 @@
+#-------------------Random Number Guessing Game--------------------
+#---------------------Imports----------------------
 import random
-
-rnd_number = random.randint(1, 100)  # Computer picks a number
+#--------------------Game-Setup-Code-------------------------
+rnd_number = random.randint(1, 100)  #Computer picks a number
 nmb_guessed = 0
 attempts = 0
-print(rnd_number) #For testing reasons
+print(rnd_number) #Prints the number for testing purposes. Comment out when finished testing.
+#---------------------Game-Code-------------------------
 print("I'm thinking of a number between 1 and 100...can you guess it? ")
 while nmb_guessed == 0:
     user_guess = int(input("Enter your guess: "))

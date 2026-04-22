@@ -1,16 +1,19 @@
 #-----------------Hangman Game--------------------
-#imports
+#-------------------Imports----------------------
 import random
 
 #------------------Functions----------------------
-def hangman_game():
-    pass
 def end_game():
+    if attempts == 0:
+        print(f"Sorry, you ran out of attempts. The word was {hangman_word}.")
+    else:
+        print(f"Congratulations! The word was {hangman_word}. You guessed it!")
+def display_hangman():
     pass
 
 #---------------Game Setup Code --------------------
 rnd_number = random.randint(0, 3)                       #Indicates the range of the random number generator
-words = ['python', 'java', 'kotlin', 'javascript']      #list of words for the game while range above should reflect the number of words in the list
+words = ['python', 'java', 'kotlin', 'javascript']      #list of words for the game while range above should reflect the number of words in this list
 hangman_word = words[rnd_number]                        #Declares the word to be guessed based on the random number generator
 hangman_word_check = list(hangman_word)
 blank_counter = len(hangman_word)
@@ -21,10 +24,10 @@ while blank_counter > 0:                                #While loop and empty li
 word_length = len(hangman_word)
 guessed_letters = []                                     #Keeps track of the letters that have been guessed by the player to prevent duplicate guesses
 game_end = 0
-
-#Game Processing Code ------------------------------------------
 hangman_count = len(hangman_word)
 attempts = 6
+
+#Game Processing Code ------------------------------------------
 print(f"The word has {word_length} characters. Can you guess it before running out of attempts? Attempts: {attempts}.")
 print("*************************************")
 while (attempts >= 1) and (hangman_count >= 1):
@@ -54,9 +57,4 @@ while (attempts >= 1) and (hangman_count >= 1):
             print("You have already guess that letter. Please guess a different letter.")
     else:
         print("Invalid input. Please enter a letter.")
-
-#Endgame Results Output -------------------------------------------
-if attempts == 0:
-    print(f"Sorry, you ran out of attempts. The word was {hangman_word}.")
-else:
-    print(f"Congratulations! The word was {hangman_word}. You guessed it!")
+end_game()
