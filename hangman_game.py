@@ -5,11 +5,67 @@ import random
 #------------------Functions----------------------
 def end_game():
     if attempts == 0:
+        display_hangman(attempts)
         print(f"Sorry, you ran out of attempts. The word was {hangman_word}.")
     else:
         print(f"Congratulations! The word was {hangman_word}. You guessed it!")
-def display_hangman():
-    pass
+def display_hangman(attempts):
+    if attempts == 6:
+        print("  +---+")
+        print("  |   |")
+        print("      |")
+        print("      |")
+        print("      |")
+        print("      |")
+        print("=========")
+    elif attempts == 5:
+        print("  +---+")
+        print("  |   |")
+        print("  O   |")
+        print("      |")
+        print("      |")
+        print("      |")
+        print("=========")
+    elif attempts == 4:
+        print("  +---+")
+        print("  |   |")
+        print("  O   |")
+        print("  |   |")
+        print("      |")
+        print("      |")
+        print("=========")
+    elif attempts == 3:
+        print("  +---+")
+        print("  |   |")
+        print("  O   |")
+        print(" /|   |")
+        print("      |")
+        print("      |")
+        print("=========")
+    elif attempts == 2:
+        print("  +---+")
+        print("  |   |")
+        print("  O   |")
+        print(" /|\  |")
+        print("      |")
+        print("      |")
+        print("=========")
+    elif attempts == 1:
+        print("  +---+")
+        print("  |   |")
+        print("  O   |")
+        print(" /|\  |")
+        print(" /    |")
+        print("      |")
+        print("=========")
+    else:
+        print("  +---+")
+        print("  |   |")
+        print("  O   |")
+        print(" /|\  |")
+        print(" / \  |")
+        print("      |")
+        print("=========")
 
 #---------------Game Setup Code --------------------
 rnd_number = random.randint(0, 3)                       #Indicates the range of the random number generator
@@ -31,6 +87,7 @@ attempts = 6
 print(f"The word has {word_length} characters. Can you guess it before running out of attempts? Attempts: {attempts}.")
 print("*************************************")
 while (attempts >= 1) and (hangman_count >= 1):
+    display_hangman(attempts)
     print(f'Word: {word_blanks}')
     player_guess = input("Guess a letter: ")
     if player_guess.isalpha():
@@ -41,7 +98,7 @@ while (attempts >= 1) and (hangman_count >= 1):
             if guess_check == 0:
                 print("The guess is incorrect!")
                 attempts -= 1
-                print(f"You have {attempts} guess remainging.")
+                print(f"You have {attempts} guess remaining.")
             else:
                 print(f"{player_guess} is in the word. It appears {guess_check} times.")
                 hangman_count -= guess_check
