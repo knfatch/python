@@ -5,11 +5,11 @@ import random
 rnd_number = random.randint(1, 100)  #Computer picks a number
 nmb_guessed = 0
 attempts = 0
-print(rnd_number) #Prints the number for testing purposes. Comment out when finished testing.
+#print(rnd_number) #Prints the number for testing purposes.
 #---------------------Game-Code-------------------------
 print("I'm thinking of a number between 1 and 100...can you guess it? ")
 while nmb_guessed == 0:
-    user_guess = int(input("Enter your guess: "))
+    user_guess = int(input("Enter your guess:\n"))
     try:
         if user_guess == rnd_number:
             attempts += 1
@@ -24,4 +24,4 @@ while nmb_guessed == 0:
             attempts += 1
             print("Guess was too high. Guess lower.")
     except ValueError:
-        print("Wrong Input Detected! Try guessing a number: ")
+        print("Wrong Input Detected! Try guessing a number:\n")
