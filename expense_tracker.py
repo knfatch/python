@@ -1,1 +1,0 @@
-# personal expense tracker using CSV file or SQLite database
