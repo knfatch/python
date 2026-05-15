@@ -1,0 +1,56 @@
+Python Robo Reminder App
+---------------------------
+
+Legend:
+---------------------------
+(Version Number) - (Date Added/Started)
+---------------------------
++ = Added feature
+- = Deleted feature
+<> = Description of current version
+'keyword' = Refers to a variable, function, file or module in the script
+* = Note/Needs Attention for current or next version
+
+Version Log:
+----------------------------
+1.0 - 10 May 2026
+----------------------------
++ Imported 'datetime' and 'smtplib' modules
++ Added 'now', 'today', 'suffix', 'month_num', 'curr_month' variables to handle checks for day, month, etc.
++ Created 'today_check', 'month_check', and 'send_email' functions
++ Added 'SMTP_SERVER' and 'PORT' variables
++ Added temporary hardcoded information into 'app_pass', 'sender', 'recipient', 'recipient2', and 'message' variables to test script
+
+<This version contains code that has one function that takes information from a set of variables and uses my personal google email account to send an email. The 'sender', 'password', 'recipient', and 'message' are all hardcoded. Two other functions exist to output the day of the month, number of the month, and name of the month. This will be used in later versions to send reminders on certain days.>
+
+*The hardcoded sensitive data needs encrypted/secure to prevent any breaches of information.
+*Database needed to store information for different reminders for various reasons and email recipients.
+*Dedicated email account needed for program to send email reminders through.
+
+----------------------------
+1.1 - 13 May 2026
+----------------------------
++ Imported 'sqlite3' module for storing reminder data in a database
++ Imported 'email.message' module to format email messages
++ Added 'format_email' function
++ Added 'README.txt' file
++ Added try and except block for 'send_email' and 'format_email' function
++ Created 'date_check' function to condense two functions ('today_check' and 'month_check')
++ Added 'day_of_week' to the 'date_check' function
++ Imported 'os' module to integrate environment variables for storage and management of sensitive data (emails, passwords, etc.)
+- Deleted 'today_check' and 'month_check'
+- Deleted 'message' variable (Merged into 'format_email' function)
+
+<A new function, 'format_email', was added that formats the email and adds the appropriate sender, recipient, message and even adds a subject to the email message. The two functions, 'today_check' and 'month_check' were combined into the 'date_check' function to have cleaner code and less functions. The 'app_pass' was assigned to an environment variable, 'GMAIL_APP_PASS', on my local pc.>
+
+*In the event of an error in the program, an email notification should be sent with the details of the error.
+*The name of the main Python script was changed from 'reminder_app.py' to 'reminder.py'.
+*A project folder was created for this version log, README file, and the 'reminder' python script.
+*An environment variable was created locally for the gmail app password and is called and assigned to 'app_pass' in the script.
+*An environment variable was created locally for the temporary (personal) gmail sender account and is called and assigned to 'sender' in the script.
+*An environment variable was created locally for the test recipient email account and was assigned to 'recipient' in the script.
+
+----------------------------
+1.2 - TBD
+----------------------------
+
