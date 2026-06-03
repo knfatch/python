@@ -3,7 +3,7 @@ Python Robo Reminder App
 
 Legend:
 ---------------------------
-(Version Number) - (Date Added/Started)
+(Version Number) - (Date Added/Worked)
 ---------------------------
 + = Added feature
 - = Deleted feature
@@ -15,13 +15,16 @@ Version Log:
 ----------------------------
 1.0 - 10 May 2026
 ----------------------------
+
+---'reminder.py'
+
 + Imported 'datetime' and 'smtplib' modules
 + Added 'now', 'today', 'suffix', 'month_num', 'curr_month' variables to handle checks for day, month, etc.
 + Created 'today_check', 'month_check', and 'send_email' functions
 + Added 'SMTP_SERVER' and 'PORT' variables
 + Added temporary hardcoded information into 'app_pass', 'sender', 'recipient', 'recipient2', and 'message' variables to test script
 
-<This version contains code that has one function that takes information from a set of variables and uses my personal google email account to send an email. The 'sender', 'password', 'recipient', and 'message' are all hardcoded. Two other functions exist to output the day of the month, number of the month, and name of the month. This will be used in later versions to send reminders on certain days.>
+<This version contains code that has one function that takes information from a set of variables and uses my personal google email account to send an email. The 'sender', 'password', 'recipient', and 'message' are all hardcoded. Two other functions exist to output the day of the month, number of the month, and name of the month. This will be used in later versions to send reminders on certain days. >
 
 *The hardcoded sensitive data needs encrypted/secure to prevent any breaches of information.
 *Database needed to store information for different reminders for various reasons and email recipients.
@@ -30,6 +33,9 @@ Version Log:
 ----------------------------
 1.1 - 13 May 2026
 ----------------------------
+
+---'reminder.py'
+
 + Imported 'sqlite3' module for storing reminder data in a database
 + Imported 'email.message' module to format email messages
 + Added 'format_email' function
@@ -41,7 +47,7 @@ Version Log:
 - Deleted 'today_check' and 'month_check'
 - Deleted 'message' variable (Merged into 'format_email' function)
 
-<A new function, 'format_email', was added that formats the email and adds the appropriate sender, recipient, message and even adds a subject to the email message. The two functions, 'today_check' and 'month_check' were combined into the 'date_check' function to have cleaner code and less functions. The 'app_pass' was assigned to an environment variable, 'GMAIL_APP_PASS', on my local pc.>
+<A new function, 'format_email', was added that formats the email and adds the appropriate sender, recipient, message and even adds a subject to the email message. The two functions, 'today_check' and 'month_check' were combined into the 'date_check' function to have cleaner code and less functions. The 'app_pass' was assigned to an environment variable, 'GMAIL_APP_PASS', on my local pc. >
 
 *In the event of an error in the program, an email notification should be sent with the details of the error.
 *The name of the main Python script was changed from 'reminder_app.py' to 'reminder.py'.
@@ -51,6 +57,45 @@ Version Log:
 *An environment variable was created locally for the test recipient email account and was assigned to 'recipient' in the script.
 
 ----------------------------
-1.2 - TBD
+1.1 - 15 May 2026
 ----------------------------
 
+---'email_scraper.py'
+
++ Created 'email_scraper.py' Python file for email scraping and is located in the same project file
++ Added the 'requests', 're', 'imaplib', 'ssl', 'email', 'decode_header' from 'email.header' imports
++ Imported the 'app_pass' and 'sender' variables from 'reminder.py'
+
+<The purpose of this script is to parse incoming emails to be able to create, update and delete reminders by using emails. This script uses the 'imaplib' library, amonst others, to connect to the email being used, currently personal. >
+
+*Database needs created and connected to 'reminder.py' and 'email_scraper.py' to manage and send reminder notifications
+
+----------------------------
+1.2 - 23 May 2026
+----------------------------
+
+---'reminder.py'
+
+- Removed 'sqlite3' import from 'reminder.py' file
+
+---'database.py'
+
++ Created 'database.py' file for sqlite3 database code
++ Imported 'sqlite3' module
+
+-----------------------------
+1.2 - 2 June 2026
+-----------------------------
+
+---'reminder.py'
+
++ Added a local dictionary called 'reminders' used for temporary reminder data storage
++ Added the 'check_reminders' function to check the reminders for the current day and to return it to be formatted in the 'format_email' function
+
+---'scraper.py'
+
++ 'email_scraper.py' renamed to 'scraper.py'
+
+<The 'database.py' file is intended to manage the database containing reminder data. The implementation of sqlite3 database hasn't been completed yet. Reminder data will temporarily be stored in a local Python dictionary in the 'reminder.py' file.>
+
+*A local Python dictionary will be used until the implementation of a SQLite3 database for reminder data can be executed effectively
