@@ -1,10 +1,9 @@
-Version = 1.2
+Version = 1.3
 #-------------Imports--------------
 import datetime as dt      #Used for tracking when to send remind notifications
 import smtplib             #Used for emailing (Simple Mail Transfer Protocol)
 import email.message       #Used to format an email message
 import os                  #Used for environment variables for storing sensitive data
-
 #-------------Functions------------
 def date_check():
     now = dt.datetime.now()                   #Assigns the current date and time to variable 'now'
@@ -22,6 +21,14 @@ def date_check():
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     name_of_month = months[month_num - 1]     #Assigns the name of the month to 'name_of_month'
     return now, today, suffix, day_of_week, month_num, name_of_month
+def check_reminders(day_of_week): #Needs finished
+    try:
+        #Code for checkng database for reminders should go here
+        pass                      
+    except Exception as e:
+        print(f'Something failed due to: {e}')
+    finally:
+        print('Reminders have been checked.')
 def format_email(sender, recipient, month, day, suffix, day_of_week, reminder):
     try:
         msg = email.message.EmailMessage()
@@ -50,22 +57,9 @@ def send_email(sender, password, message, port, server):
             print("Message Sent Successfully")
     except Exception as e:
         print(f'Failed to send: {e}')
-def check_reminders(day_of_week): #Needs finished
-    try:
-        if day_of_week in reminders:
-            return reminders[f'{day_of_week}']
-        else:
-            print('No reminders for today.')
-    except Exception as e:
-        print(f'Something failed due to: {e}')
-    finally:
-        print('Reminders have been checked.')
 #---------Server-Details-------------
 SMTP_SERVER = 'smtp.gmail.com'
 PORT = 587                           #PORT '587' for STARTTLS
-#---------Temporary-Dictionary-------
-# name_of_reminder_dict = {'reminder_day':'reminder_message}
-reminders = {'Wed':'Take out trash.'}    #Temporary dict used for reminder data
 #-----------Email-Details------------
 app_pass = str(os.environ.get('GMAIL_APP_PASS'))        #Environment variable set in User Variables on OS
 sender = str(os.environ.get('ROBO_SENDER'))             #Environment variable set in User Variables on OS
@@ -76,13 +70,10 @@ if __name__ == "__main__":
     now, today, suffix, day_of_week, month_num, name_of_month = date_check()
     reminder = check_reminders(day_of_week)
     message = format_email(sender, recipient2, name_of_month, today, suffix, day_of_week, reminder)
-    # send_email(sender, app_pass, message, PORT, SMTP_SERVER)
-
-
+    send_email(sender, app_pass, message, PORT, SMTP_SERVER)
 #-------Testing-and-Debugging------
-# print(now)    #Prints the Date (YYYY-MM-DD) and Time (24:00:00.000000)
-# print(f"Current Day: {today}{suffix}")
-# print(f'Day of the Week: {day_of_week}')
-# print(f"Current Month: {name_of_month} ({month_num})")
-# print(f'Message: {message}')
-    print(message)
+    # print(now)    #Prints the Date (YYYY-MM-DD) and Time (24:00:00.000000)
+    # print(f"Current Day: {today}{suffix}")
+    # print(f'Day of the Week: {day_of_week}')
+    # print(f"Current Month: {name_of_month} ({month_num})")
+    # print(f'Message: {reminder}')

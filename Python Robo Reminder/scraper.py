@@ -1,5 +1,5 @@
 # Email scraping file for 'Python Robo Reminder' app
-Version = 1.2
+Version = 1.3
 #-------Imports----------
 import requests     #Used to fetch emails/content
 import re           #Used to search for patterns
