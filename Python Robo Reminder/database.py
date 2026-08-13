@@ -35,6 +35,7 @@ def main():
             print('Delete Table - 5    Show Tables - 6')
             print("Press 'q' or 'Q' to exit program.")
             user_input = int(input('Select your option.\n'))
+            print('-----------------------------')
     except Exception as e:
         print(f'Something failed due to: {e}')
     finally:
@@ -61,7 +62,7 @@ def create_table():
         print('Error occured: ', error)
     finally:
         conn.commit()
-        print(f'The table, {final_table_name}, was created.')
+        print(f'The table ({final_table_name}) was created successfully.')
         cursor.close()
         conn.close()
         print('SQL Connection closed')
@@ -111,13 +112,14 @@ def delete_user():
         print('SQL Connection open')
 
         # This code queries the user table to show current users
-        cursor.execute("SELECT * FROM users")
+        table_in_question = input("Enter the table the user you are trying to delete is from.\n")
+        cursor.execute(f"SELECT * FROM {table_in_question}")
         rows = cursor.fetchall()
         for row in rows:
             print(f'ID: {row[0]} - Name: {row[1]} - Email: {row[2]}')
 
         # Delete a user code goes here
-        sql_query = 'DELETE FROM users WHERE id = ?'
+        sql_query = f'DELETE FROM {table_in_question} WHERE id = ?'
         target_id = int(input('Select the ID of the user you want to delete:\n'))
         cursor.execute(sql_query, (target_id,))
     except Exception as e:
@@ -176,7 +178,7 @@ def reference_guide(do_not_call):
         #--------SQLite3-commands-go-here-------
         #Creates table
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS users (
+            CREATE TABLE IF NOT EXISTS users (    
                    id INTEGER PRIMARY KEY,
                    name TEXT NOT NULL,
                    email TEXT UNIQUE

@@ -126,3 +126,13 @@ Version Log:
 - Deleted local dictionaries and lists that were being used to store reminders
 
 *Database 'reminders.db' created and is planned to store all reminder information including person, email for said person, frequency, date, time, etc.
+
+------------------------------
+1.3 - 12 Aug 2026
+------------------------------
+
+---'reminder.py'
+
++ Added a hardcoded temporary database for testing purposes
+
+<Adjusted the scope of the app to include a temporary database that is hardcoded into the 'reminder.py' file.>

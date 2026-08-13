@@ -23,7 +23,7 @@ def date_check():
     return now, today, suffix, day_of_week, month_num, name_of_month
 def check_reminders(day_of_week): #Needs finished
     try:
-        #Code for checkng database for reminders should go here
+        #Code for checking database for reminders should go here
         pass                      
     except Exception as e:
         print(f'Something failed due to: {e}')
@@ -65,6 +65,8 @@ app_pass = str(os.environ.get('GMAIL_APP_PASS'))        #Environment variable se
 sender = str(os.environ.get('ROBO_SENDER'))             #Environment variable set in User Variables on OS
 recipient = str(os.environ.get('TEST_RECIPIENT'))       #Environment variable set in User Variables on OS            
 recipient2 = str(os.environ.get('ROBO_SENDER'))         #Assigned to same email as sender for testing purposes
+#------------Temp-Database---------   Contains a temporary database for testing purposes
+
 #-------------Main-Code------------
 if __name__ == "__main__":
     now, today, suffix, day_of_week, month_num, name_of_month = date_check()
